@@ -1,7 +1,7 @@
 # Bài 1: Tìm Bug
 
 ### I. Đề bài
-#### Ví dụ: Ta khởi tạo mảng `leader = [0, 1, 2, 3, 4]`, với `leader[i] = i`.
+#### Ví dụ: Ta khởi tạo mảng với `leader[i] = i`.
 
 ```java
 public void onion(int p, int q) {
@@ -19,21 +19,15 @@ public void onion(int p, int q) {
 
 ---
 
-### II. Chứng minh cho bài toán
-
-Cho 3 phần tử $a, b, c$ sao cho:
-- `leader[a] == leader[b] == X`
-- `leader[c] == Y != X`
-
-> **Tập trung vào hai đoạn code logic chính của cài đặt trên .**
-
-Xét `onion(b, c)`: 
-Trường hợp $i = b$, khi đó giá trị trong mảng của chỉ số $b$ vô tình bị thay đổi `leader[b] = Y`. Khi đó, có thể có một phần tử $n$ nào đó có `find(b) = find(n)`.
-
-Với trường hợp đó thì sẽ là một trường hợp sai vì $b$ đã được cập nhật nhưng vòng lặp trong cài đặt không cập nhật cho phần tử $n$.
+### II. Chứng minh cho bài toán <br>
+#### **Cho một mảng** `leader=[0,1,2]` : tương ứng với `leader[n] = n` . <br>
+##### **Bước 1** : Gọi hàm onion(0,1) <br>
+Thấy `leader[0] == leader[0]` => `leader[0] = leader[1] = 1` <=> mảng `leader = [1,1,2]` . <br>
+##### **Bước 2** : Tiếp tục gọi hàm onion(0,2) <br>
+Thấy `leader[0] == leader[0]` => `leader[0] = leader[2] = 2` **<Bug ở đây>** <=> mảng `leader = [2,1,2]` . ***đây là mảng sai vì nó chưa cập nhật luôn ở vị trí*** `leader[1]` <br><br>
+>***VẬY TESTCASE SAI CHO BÀI NÀY LÀ [0,1,2] VỚI 2 BƯỚC NHƯ TRÊN*** 
 
 
-> *Testcase* sai cho bài này là `(0,1,2)`. <br>
 
 
 
